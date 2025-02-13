@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileinay.MapelFragment
-import com.example.mobileinay.ProfileFragment
 import com.example.mobileinay.R
 import com.example.mobileinay.TagihanFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
