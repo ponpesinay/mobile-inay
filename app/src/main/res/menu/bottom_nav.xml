@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btn_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Home"
+        android:iconTint="@color/bg_utama"
+        android:icon="@drawable/ic_home_24"/>
+    <item
+        android:id="@+id/btn_mapel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:iconTint="@color/bg_utama"
+        android:title="Mapel"
+        android:icon="@drawable/ic_menu_book"/>
+    <item
+        android:id="@+id/btn_tagihan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:iconTint="@color/bg_utama"
+        android:title="Tagihan"
+        android:icon="@drawable/ic_wallet_24"/>
+    <item
+        android:id="@+id/btn_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:iconTint="@color/bg_utama"
+        android:title="Profile"
+        android:icon="@drawable/ic_person"/>
+</menu>

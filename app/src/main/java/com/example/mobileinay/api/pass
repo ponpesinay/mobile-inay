@@ -1,0 +1,21 @@
+Email : 25021000
+Pass : 541517
+
+
+
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Inisialisasi RecyclerView
+        recyclerView = view.findViewById(R.id.recyclerViewJadwal)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // Tambahkan Data
+        jadwalList.add(JadwalModel("Musyawaroh", "Fathul Qorib", "Masjid", "05:30 WIB", R.drawable.jadwal_pagi))
+        jadwalList.add(JadwalModel("Kajian Hadits", "Riyadus Shalihin", "Aula", "10:00 WIB", R.drawable.jadwal_pagi))
+        jadwalList.add(JadwalModel("Tafsir Al-Quran", "Tafsir Jalalain", "Musholla", "14:00 WIB", R.drawable.jadwal_pagi))
+
+        // Set Adapter
+        jadwalAdapter = JadwalAdapter(jadwalList)
+        recyclerView.adapter = jadwalAdapter
+    }

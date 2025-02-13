@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">MobileInay</string>
+    <string name="login">Login</string>
+    <string name="btn_login">Login</string>
+    <string name="login_email">Masukkan NIS</string>
+    <string name="login_password">Masukkan Password</string>
+    <string name="tidak_ada_akun">
+        <font color="ffffff">jika tidak memiliki akun, klik di</font>
+        <font>
+            <b color="22A699"> Register</b>
+        </font>
+    </string>
+    <string name="Punya_akun">
+        <font color="ffffff">Already Registered,</font>
+        <font><b color="22A699"> Login</b></font>
+    </string>
+    <string name="lup_pass"> Forgot password ?</string>
+    <string name="judul_reg">Register</string>
+    <string name="register">Sign Up</string>
+    <string name="username">Username</string>
+    <string name="Kelas">Kelas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string-array name="semester_array">
+        <item>Semester 1</item>
+        <item>Semester 2</item>
+    </string-array>
+    <string-array name="tahun_array">
+        <item>2022/2023</item>
+        <item>2023/2024</item>
+        <item>2024/2025</item>
+    </string-array>
+
+
+</resources>
