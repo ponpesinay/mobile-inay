@@ -13,13 +13,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/bg_cut">
+        android:background="@drawable/bg_button">
         <TextView
             android:id="@+id/tv_mapelHadir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fiqih"
-            style="@style/textNilai"
+            style="@style/textJml"
             android:layout_marginLeft="20dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,8 +30,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:text="9"
-            android:background="@drawable/bg_button"
-            style="@style/textJml"
+            android:background="@drawable/bg_nilai"
+            style="@style/textNilai"
             android:gravity="center"
             android:layout_marginRight="20dp"
             app:layout_constraintTop_toTopOf="parent"

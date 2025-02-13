@@ -65,8 +65,8 @@
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">@font/montserrat_bold</item>
         <item name="textFillColor">@color/black</item>
-
     </style>
+
     
     <style name="textJml">
         <item name="android:textSize">16sp</item>
