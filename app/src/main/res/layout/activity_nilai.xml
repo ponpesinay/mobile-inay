@@ -70,30 +70,7 @@
         app:layout_constraintTop_toBottomOf="@id/bg_jadwal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-        <!--        <GridLayout-->
-        <!--            android:id="@+id/gridLayout"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_margin="16dp"-->
-        <!--            android:columnCount="2"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent">-->
 
-        <!-- Semester TextView -->
-        <!--            <TextView-->
-        <!--                android:id="@+id/tvSemester"-->
-        <!--                android:layout_width="0dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:text="Semester"-->
-        <!--                android:textSize="14sp"-->
-        <!--                android:textStyle="bold"-->
-        <!--                android:gravity="center"-->
-        <!--                android:layout_columnWeight="1"-->
-        <!--                android:layout_rowWeight="1"-->
-        <!--                android:padding="16dp" />-->
-
-        <!-- Dropdown for Semester -->
         <Spinner
             android:id="@+id/SpinnerSemester"
             android:layout_width="wrap_content"
@@ -132,28 +109,6 @@
             android:textColor="@color/white"
             android:backgroundTint="@color/bg_edit_text"
             />
-        <!-- Tahun Ajaran TextView -->
-        <!--            <TextView-->
-        <!--                android:id="@+id/tvTahunAjaran"-->
-        <!--                android:layout_width="0dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:text="Tahun Ajaran"-->
-        <!--                android:textSize="14sp"-->
-        <!--                android:textStyle="bold"-->
-        <!--                android:gravity="center"-->
-        <!--                android:layout_columnWeight="1"-->
-        <!--                android:layout_rowWeight="1"-->
-        <!--                android:padding="16dp" />-->
-
-        <!-- Dropdown for Tahun Ajaran -->
-        <!--            <Spinner-->
-        <!--                android:id="@+id/SpinnerTahun"-->
-        <!--                android:layout_width="0dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_columnWeight="1"-->
-        <!--                android:layout_rowWeight="1" />-->
-
-        <!--        </GridLayout>-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
