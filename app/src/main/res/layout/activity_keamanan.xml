@@ -30,7 +30,7 @@
                 android:layout_marginEnd="24dp">
 
                 <ImageButton
-                    android:id="@+id/img_kembali"
+                    android:id="@+id/imgBack"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginTop="13dp"

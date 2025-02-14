@@ -30,13 +30,18 @@ class LoginActivity : AppCompatActivity() {
 
         sessionManager = SessionManager(this)
 
+        if (sessionManager.dataLogin()){
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }
+
         val nisEditText = findViewById<EditText>(R.id.Tei_email)
         val passwordEditText = findViewById<EditText>(R.id.Tei_pass)
         val loginButton = findViewById<Button>(R.id.btn_login)
 
         loginButton.setOnClickListener {
-            val idSantri = nisEditText.text.toString()
-            val password = passwordEditText.text.toString()
+            val idSantri = nisEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
 
             if (idSantri.isEmpty()) {
                 Toast.makeText(this, "Nis Tidak Boleh Kososng", Toast.LENGTH_SHORT).show()
@@ -59,12 +64,12 @@ class LoginActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val loginResponse = response.body()
                         Log.d("LoginResponse", "Response: $loginResponse")
+                        val accessToken = loginResponse?.access_token
+                        val idUser = loginResponse?.id_user
+                        val name = loginResponse?.name
 
-                        if (loginResponse?.access_token != null) {
-                            val accessToken = loginResponse.access_token
-                            val idUser = loginResponse.id_user
-                            val name = loginResponse.name
-                            SessionManager(this@LoginActivity).setToken(accessToken, idUser, name)
+                        if (accessToken != null && idUser != null && name != null) {
+                            sessionManager.saveUserSession(accessToken, idUser, name)
 
                             Log.d("LoginSuccess", "Token: $accessToken")
                             Log.d("LoginSuccess", "Navigating to HomeActivity")
@@ -73,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         } else {
-                            Toast.makeText(this@LoginActivity, "Login Gagal", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@LoginActivity, "Login Gagal : Data tidak Lengkap", Toast.LENGTH_SHORT).show()
                             Log.e("LoginError", "Response message: ${loginResponse?.message}")
                         }
                     } else {

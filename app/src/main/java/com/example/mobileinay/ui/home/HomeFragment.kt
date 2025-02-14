@@ -39,6 +39,7 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val sharesPrefs = SessionManager(requireContext())
+
 //      Set Name User
         view.findViewById<TextView>(R.id.NamaUser).text = sharesPrefs.getNameUser()
 
@@ -77,7 +78,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         // Inisialisasi RecyclerView
         recyclerView = view.findViewById(R.id.recycleJadwal)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         // Panggil API untuk fetch data
         val sharedPrefs = SessionManager(requireContext())
