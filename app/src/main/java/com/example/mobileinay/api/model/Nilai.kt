@@ -2,10 +2,10 @@ package com.example.mobileinay.api.model
 
 data class NilaiResponse(
   val message: String,
-  val data: List<Daum>
+  val data: List<NilaiData>
 )
 
-data class Daum(
+data class NilaiData(
   val id_nilai: Long,
   val id_santri: Long,
   val id_mapel: Long,

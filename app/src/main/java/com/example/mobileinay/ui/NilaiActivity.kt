@@ -2,121 +2,118 @@ package com.example.mobileinay.ui
 
 
 //import com.example.mobileinay.retrofit.ApiClient
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileinay.R
 import com.example.mobileinay.UserNilai
+import com.example.mobileinay.api.adapter.KehadiranAdapter
+import com.example.mobileinay.api.adapter.NilaiAdapter
+import com.example.mobileinay.api.adapter.SessionManager
+import com.example.mobileinay.api.model.KehadiranData
+import com.example.mobileinay.api.model.KehadiranResponse
+import com.example.mobileinay.api.model.NilaiData
+import com.example.mobileinay.api.model.NilaiResponse
 import com.example.mobileinay.nilai
+import com.example.mobileinay.retrofit.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class NilaiActivity : AppCompatActivity() {
-
-
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: UserNilai
+//    private lateinit var recyclerView: RecyclerView
+//    private lateinit var adapter: UserNilai
     private lateinit var spinnerSemester: Spinner
-    private lateinit var spinnerNilai: Spinner
+//    private lateinit var spinnerNilai: Spinner
+    private lateinit var sessionManager: SessionManager
+    private lateinit var nilaiAdapter: NilaiAdapter
 
-    private val dataNilai = listOf(
-//        Semester 1
-        nilai("Fiqih", 80, 85, 90, 1),
-        nilai("Shorof", 78, 82, 88, 1),
-        nilai("Nahwu", 85, 80, 89,1),
-        nilai("Akhlak", 83, 81, 86, 1),
-//          Semester 2
-        nilai("Fiqih", 85, 88, 92, 2),
-        nilai("Shorof", 80, 84, 90,2),
-        nilai("Nahwu", 87, 82, 91,2),
-        nilai("Akhlak", 84, 85, 89,2)
-    )
-    private var selectedSemester = 1
-    private var selectedType = "UTS"
-
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nilai)
         supportActionBar?.hide()
 
-//      imageButton
         val btnBack: ImageButton = findViewById(R.id.img_kembali)
 
         btnBack.setOnClickListener {
             finish()
         }
 
-        recyclerView = findViewById(R.id.recyclerView)
+        sessionManager = SessionManager(this)
         spinnerSemester = findViewById(R.id.SpinnerSemester)
-        spinnerNilai = findViewById(R.id.SpinnerNilai)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-//        adapter = UserNilai(dataNilai)
-//        recyclerView.adapter = adapter
+        val token = sessionManager.getTokenAccess()
+        val idUser = sessionManager.getIdUser()
+        var semester = "ganjil"
 
         val semesterOptions = arrayOf("Semester 1", "Semester 2")
         val semesterAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, semesterOptions)
         semesterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerSemester.adapter = semesterAdapter
-
-        val nilaiOptions = arrayOf("UTS", "UAS", "Tugas")
-        val nilaiAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, nilaiOptions)
-        nilaiAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerNilai.adapter = nilaiAdapter
-
-        spinnerSemester.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        spinnerSemester.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
                 position: Int,
                 id: Long
             ) {
-                selectedSemester = position + 1
-                updateRecyclerView()
+                Log.e("Position", "$position")
+                if (position == 0) {
+                    semester = "ganjil"
+                } else {
+                    semester = "genap"
+                }
+                fetchNilai(token, idUser, semester)
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
+            }
         }
 
+        if (token != null) {
+            fetchNilai(token, idUser, semester)
+        } else {
+            Toast.makeText(this, "Token tidak ditemukan! Silakan login.", Toast.LENGTH_SHORT).show()
         }
-        spinnerNilai.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
+    }
+
+    private fun fetchNilai(token: String?, idUser: String?, semester: String?) {
+        RetrofitClient.instance.getNilai("Bearer $token", idUser, semester).
+        enqueue(object : Callback<NilaiResponse> {
+            override fun onResponse(
+                call: Call<NilaiResponse>,
+                response: Response<NilaiResponse>
             ) {
-                selectedType = nilaiOptions[position]
-                updateRecyclerView()
+                if (response.isSuccessful) {
+                    val jadwalJson = response.body()?.data
+                    jadwalJson?.let { showOnView(it) }
+                } else {
+                    Log.e("API_ERROR", "Error: ${response.code()}")
+                }
             }
-            override fun onNothingSelected(parent: AdapterView<*>?) {
 
+            override fun onFailure(call: Call<NilaiResponse>, t: Throwable) {
+                Log.e("API_FAILURE", "Failure: ${t.message}")
             }
-        }
-        adapter = UserNilai(filterData())
-        recyclerView.adapter = adapter
+        })
     }
 
-    private fun filterData(): List<Pair<String, Int>> {
-    return  dataNilai.filter { it.semester == selectedSemester }
-        .map {
-            val nilai = when(selectedType){
-                "UTS" -> it.uts
-                "UAS" -> it.uas
-                "Tugas" -> it.tugas
-                else -> 0
-            }
-            Pair(it.mapel, nilai)
-        }
-    }
 
-    private fun updateRecyclerView() {
-        val filterData = filterData()
-        adapter.updateData(filterData)
+    private fun showOnView(nilai: List<NilaiData>?) {
+        val recyclerView = findViewById<RecyclerView>(R.id.rvNilai)
+        nilaiAdapter = NilaiAdapter(nilai)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = nilaiAdapter
     }
-
 }

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileinay.R
-import com.example.mobileinay.api.adapter.MapelAdapter.MapelViewHolder
 import com.example.mobileinay.api.model.KehadiranData
 
 class KehadiranAdapter (
