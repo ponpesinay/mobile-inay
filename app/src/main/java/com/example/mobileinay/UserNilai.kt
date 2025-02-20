@@ -10,8 +10,8 @@ class UserNilai(private var nilaiList: List<Pair<String, Int>>) :
     RecyclerView.Adapter<UserNilai.UserViewHolder>() {
 
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val namaMapel: TextView = itemView.findViewById(R.id.NamaMapel_tv)
-        val tvNilai: TextView = itemView.findViewById(R.id.tvUts)
+        val namaMapel: TextView = itemView.findViewById(R.id.tv_mapelHadir)
+        val tvNilai: TextView = itemView.findViewById(R.id.tv_totalhadir)
 
     }
 

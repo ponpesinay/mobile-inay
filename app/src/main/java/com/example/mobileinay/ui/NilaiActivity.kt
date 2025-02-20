@@ -1,9 +1,8 @@
-package com.example.mobileinay
+package com.example.mobileinay.ui
 
 
 //import com.example.mobileinay.retrofit.ApiClient
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -12,6 +11,9 @@ import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mobileinay.R
+import com.example.mobileinay.UserNilai
+import com.example.mobileinay.nilai
 
 
 class NilaiActivity : AppCompatActivity() {
@@ -24,15 +26,15 @@ class NilaiActivity : AppCompatActivity() {
 
     private val dataNilai = listOf(
 //        Semester 1
-        nilai("Matematika", 80, 85, 90, 1),
-        nilai("Bahasa Indonesia", 78, 82, 88, 1),
-        nilai("IPA", 85, 80, 89,1),
-        nilai("IPS", 83, 81, 86, 1),
+        nilai("Fiqih", 80, 85, 90, 1),
+        nilai("Shorof", 78, 82, 88, 1),
+        nilai("Nahwu", 85, 80, 89,1),
+        nilai("Akhlak", 83, 81, 86, 1),
 //          Semester 2
-        nilai("Matematika", 85, 88, 92, 2),
-        nilai("Bahasa Indonesia", 80, 84, 90,2),
-        nilai("IPA", 87, 82, 91,2),
-        nilai("IPS", 84, 85, 89,2)
+        nilai("Fiqih", 85, 88, 92, 2),
+        nilai("Shorof", 80, 84, 90,2),
+        nilai("Nahwu", 87, 82, 91,2),
+        nilai("Akhlak", 84, 85, 89,2)
     )
     private var selectedSemester = 1
     private var selectedType = "UTS"

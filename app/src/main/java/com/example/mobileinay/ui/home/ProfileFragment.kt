@@ -42,7 +42,6 @@ class ProfileFragment : Fragment() {
         kelasUser = view.findViewById(R.id.Tv_kelas)
         val sharesPrefs = SessionManager(requireContext())
         fetchProfile(sharesPrefs.getTokenAccess(), sharesPrefs.getIdUser())
-
     }
 
     private fun fetchProfile(token: String?, idUser: String?) {

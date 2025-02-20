@@ -9,13 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileinay.KeamananActivity
 import com.example.mobileinay.MajmuActivity
-import com.example.mobileinay.NilaiActivity
+import com.example.mobileinay.ui.NilaiActivity
 import com.example.mobileinay.R
 import com.example.mobileinay.RaportActivity
 import com.example.mobileinay.api.adapter.JadwalAdapter
@@ -77,7 +76,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         // Inisialisasi RecyclerView
         recyclerView = view.findViewById(R.id.recycleJadwal)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         // Panggil API untuk fetch data
         val sharedPrefs = SessionManager(requireContext())

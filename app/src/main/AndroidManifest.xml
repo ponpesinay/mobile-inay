@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-<!--    <uses-permission android:name="android.permission.INTERNET" />-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
@@ -28,9 +27,6 @@
             android:name=".EditDataActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity_jad_Nga_Selasa"
-            android:exported="false" />
-        <activity
             android:name=".DatadiriActivity"
             android:exported="false" />
         <activity
@@ -43,25 +39,7 @@
             android:name=".KeamananActivity"
             android:exported="false" />
         <activity
-            android:name=".NilaiActivity"
-            android:exported="false" />
-        <activity
-            android:name=".JadNgaMingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".JadNgaSabActivity"
-            android:exported="false" />
-        <activity
-            android:name=".JadNgaJumActivity"
-            android:exported="false" />
-        <activity
-            android:name=".JadNgaKamActivity"
-            android:exported="false" />
-        <activity
-            android:name=".JadNgaRabuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".JadNgaSelasaActivity"
+            android:name=".ui.NilaiActivity"
             android:exported="false" />
         <activity
             android:name=".ui.JadwalNgajiActivity"

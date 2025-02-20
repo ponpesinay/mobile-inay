@@ -32,6 +32,6 @@ data class Jadwal(
     val selesai: String,
     val created_at: String,
     val updated_at: String,
-    val mapel: Mapel,
+    val mapel: MapelData,
     val pengajar: Pengajar,
 )
